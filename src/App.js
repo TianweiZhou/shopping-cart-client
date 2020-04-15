@@ -5,6 +5,7 @@ import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import {  BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import { isAuthenticated } from './repository';
+
 class App extends Component {
   logOut(){
     localStorage.removeItem('x-access-token');
@@ -16,7 +17,7 @@ class App extends Component {
         <div>
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container">
-              <Link className="navbar-brand" to="/">ShoppingCart</Link>
+              <Link className="navbar-brand" to="/">BestSell</Link>
               <button className="navbar-toggler" type="button" 
                 data-toggle="collapse" data-target="#navbarNavAltMarkup" 
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" 

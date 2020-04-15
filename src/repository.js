@@ -4,13 +4,14 @@ const BASE_URL = 'http://localhost:5000';
 
 //get products from server
 export async function getProducts() {
-        const response = await axios.get(`${BASE_URL}/api/products`);
+        const response = await axios.get(`${BASE_URL}/api/product`);
+        console.log(response.data);
         return response.data;
 }
 
 //get products base on cart
 export async function getCartProducts(cart) {
-        const response = await axios.post(`${BASE_URL}/api/products`, { cart });
+        const response = await axios.post(`${BASE_URL}/api/product/cart`, { cart });
         return response.data;
 }
 

@@ -8,9 +8,11 @@ class Cart extends React.Component {
     super(props);
     this.state = { products: [], total: 0 }
   }
+
   componentDidMount() {
     let cart = localStorage.getItem('cart');
     if (!cart) return;
+
     getCartProducts(cart).then((products) => {
       let total = 0;
       for (var i = 0; i < products.length; i++) {
@@ -19,6 +21,7 @@ class Cart extends React.Component {
       this.setState({ products, total });
     });
   }
+
   removeFromCart = (product) => {
     let products = this.state.products.filter((item) => item.id !== product.id);
     let cart = JSON.parse(localStorage.getItem('cart'));
@@ -27,10 +30,12 @@ class Cart extends React.Component {
     let total = this.state.total - (product.qty * product.price)
     this.setState({ products, total });
   }
+
   clearCart = () => {
     localStorage.removeItem('cart');
     this.setState({ products: [] });
   }
+
   render() {
     const { products, total } = this.state;
     return (
@@ -39,7 +44,8 @@ class Cart extends React.Component {
         {
           products.map((product, index) =>
             <CartItem product={product} remove={this.removeFromCart} key={index} />)
-        } <hr />
+        }
+        <hr />
         {products.length ?
           <div><h4>
             <small>Total Amount: </small>

@@ -13,9 +13,14 @@ class ProductItem extends React.Component {
   addToCart = () => {
     let cart = localStorage.getItem('cart')
       ? JSON.parse(localStorage.getItem('cart')) : {};
+
+      console.log(this.props.product.id);
     let id = this.props.product.id.toString();
+
     cart[id] = (cart[id] ? cart[id] : 0);
+
     let qty = cart[id] + parseInt(this.state.quantity);
+
     if (this.props.product.available_quantity < qty) {
       cart[id] = this.props.product.available_quantity;
     } else {
@@ -23,7 +28,7 @@ class ProductItem extends React.Component {
     }
     localStorage.setItem('cart', JSON.stringify(cart));
   }
-  
+
   render() {
     const { product } = this.props;
     return (
@@ -37,10 +42,18 @@ class ProductItem extends React.Component {
           </span>
           {product.available_quantity > 0 ?
             <div>
-              <button className="btn btn-sm btn-warning float-right"
-                onClick={this.addToCart}>Add to cart</button>
-              <input type="number" value={this.state.quantity} name="quantity"
-                onChange={this.handleInputChange} className="float-right"
+
+              <button
+                className="btn btn-sm btn-warning float-right"
+                onClick={this.addToCart}>Add to cart
+              </button>
+
+              <input
+                type="number"
+                value={this.state.quantity}
+                name="quantity"
+                onChange={this.handleInputChange}
+                className="float-right"
                 style={{ width: "60px", marginRight: "10px", borderRadius: "3px" }} />
             </div> :
             <p className="text-danger"> product is out of stock </p>
