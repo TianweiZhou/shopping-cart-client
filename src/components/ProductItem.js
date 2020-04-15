@@ -2,22 +2,21 @@ import React from 'react';
 
 class ProductItem extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = { quantity: 1 }
-  }
+  state = { quantity: 1 }
 
   handleInputChange = event =>
     this.setState({ [event.target.name]: event.target.value });
 
   addToCart = () => {
     let cart = localStorage.getItem('cart')
-      ? JSON.parse(localStorage.getItem('cart')) : {};
+      ? JSON.parse(localStorage.getItem('cart'))
+      : {};
 
-      console.log(this.props.product.id);
-    let id = this.props.product.id.toString();
+    let id = this.props.product._id;
 
-    cart[id] = (cart[id] ? cart[id] : 0);
+    cart[id] = (cart[id]
+      ? cart[id]
+      : 0);
 
     let qty = cart[id] + parseInt(this.state.quantity);
 
@@ -40,8 +39,8 @@ class ProductItem extends React.Component {
           <span className="card-text">
             <small>Available Quantity: </small>{product.available_quantity}
           </span>
-          {product.available_quantity > 0 ?
-            <div>
+          {product.available_quantity > 0
+            ? <div>
 
               <button
                 className="btn btn-sm btn-warning float-right"
@@ -55,8 +54,8 @@ class ProductItem extends React.Component {
                 onChange={this.handleInputChange}
                 className="float-right"
                 style={{ width: "60px", marginRight: "10px", borderRadius: "3px" }} />
-            </div> :
-            <p className="text-danger"> product is out of stock </p>
+            </div>
+            : <p className="text-danger"> product is out of stock </p>
           }
         </div>
       </div>

@@ -5,7 +5,6 @@ const BASE_URL = 'http://localhost:5000';
 //get products from server
 export async function getProducts() {
         const response = await axios.get(`${BASE_URL}/api/product`);
-        console.log(response.data);
         return response.data;
 }
 
