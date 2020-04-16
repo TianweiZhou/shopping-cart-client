@@ -18,7 +18,7 @@ export async function getCartProducts(cart) {
 export async function login(data) {
         try {
                 const response = await axios.post(`${BASE_URL}/api/auth`,
-                        { name: data.name, password: data.password });
+                        { email: data.email, password: data.password });
                 localStorage.setItem('x-access-token', response.data.token);
                 //2 hours expire time
                 localStorage.setItem('x-access-token-expiration', Date.now() + 2 * 60 * 60 * 1000);

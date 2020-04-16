@@ -1,12 +1,9 @@
 import React from 'react';
 
 class CartItem extends React.Component {
+  state = { quantity: 1 }
 
-  constructor(props) {
-    super(props);
-    this.state = { quantity: 1 }
-  }
-  
+
   render() {
     const { product } = this.props;
     return (

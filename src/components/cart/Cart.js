@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getCartProducts } from '../repository';
+import { getCartProducts } from '../../repository';
 import CartItem from './CartItem';
 
 class Cart extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { products: [], total: 0 }
+  state = {
+    products: [],
+    total: 0
   }
 
   componentDidMount() {
@@ -25,7 +25,7 @@ class Cart extends React.Component {
   removeFromCart = (product) => {
     let products = this.state.products.filter((item) => item.id !== product.id);
     let cart = JSON.parse(localStorage.getItem('cart'));
-    delete cart[product.id.toString()];
+    delete cart[product.id];
     localStorage.setItem('cart', JSON.stringify(cart));
     let total = this.state.total - (product.qty * product.price)
     this.setState({ products, total });
